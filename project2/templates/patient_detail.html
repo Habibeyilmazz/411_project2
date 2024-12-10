@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ patient.name }}'s Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>{{ patient.name }}'s Details</h2>
+        <ul>
+            <li><strong>TC Kimlik No:</strong> {{ patient.tc_kimlik_no }}</li>
+            <li><strong>Age:</strong> {{ patient.age }}</li>
+            <li><strong>Gender:</strong> {{ patient.gender }}</li>
+            <li><strong>Blood Type:</strong> {{ patient.blood_type }}</li>
+            <li><strong>Phone:</strong> {{ patient.phone }}</li>
+            <li><strong>Height:</strong> {{ patient.height }}</li>
+            <li><strong>Weight:</strong> {{ patient.weight }}</li>
+            <li><strong>Diagnoses:</strong> {{ patient.diagnoses | join(', ') }}</li>
+            <li><strong>Visits:</strong> {{ patient.visits | join(', ') }}</li>
+            <li><strong>Allergies:</strong> {{ patient.allergies | join(', ') }}</li>
+        </ul>
+    </div>
+</body>
+</html>

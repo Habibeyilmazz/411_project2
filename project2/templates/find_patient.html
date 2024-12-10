@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find Patient</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Find Patient Record</h2>
+        <form method="GET">
+            <div class="form-group">
+                <input type="text" class="form-control" name="tc_kimlik_no" placeholder="Enter TC Kimlik No">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+        {% if found_patient %}
+            <h3 class="mt-4">Search Result:</h3>
+            <ul>
+                <li><a href="{{ url_for('patient_detail', tc_kimlik_no=found_patient.tc_kimlik_no) }}">{{ found_patient.name }}</a></li>
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>

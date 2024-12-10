@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Patient</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Register a Patient</h2>
+        <form method="POST">
+            <div class="form-group">
+                <label>TC Kimlik No:</label>
+                <input type="text" class="form-control" name="tc_kimlik_no" required>
+            </div>
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" class="form-control" name="name" required>
+            </div>
+            <div class="form-group">
+                <label>Age:</label>
+                <input type="number" class="form-control" name="age" required>
+            </div>
+            <div class="form-group">
+                <label>Gender:</label>
+                <input type="text" class="form-control" name="gender" required>
+            </div>
+            <div class="form-group">
+                <label>Blood Type:</label>
+                <input type="text" class="form-control" name="blood_type" required>
+            </div>
+            <div class="form-group">
+                <label>Phone Number:</label>
+                <input type="text" class="form-control" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label>Height:</label>
+                <input type="text" class="form-control" name="height" required>
+            </div>
+            <div class="form-group">
+                <label>Weight:</label>
+                <input type="text" class="form-control" name="weight" required>
+            </div>
+            <button type="submit" class="btn btn-success">Register Patient</button>
+        </form>
+    </div>
+</body>
+</html>
