@@ -24,7 +24,18 @@ patients = [
         'inpatient_room':'Not Assigned'
     }
 ]
-
+rooms= {
+    1:True,
+    2:False,
+    3:True,
+    4:False,
+    5:False,
+    6:True,
+    7:False,
+    8:True,
+    9:True,
+    10:False
+}
 
 class LoginForm(FlaskForm):
     email= StringField('E-mail')
@@ -100,6 +111,7 @@ def find_patient():
     if search_tc:
         patient = next((p for p in patients if p['tc_kimlik_no'] == search_tc), None)
         return render_template('find_patient.html', patients=patients, search_tc=search_tc, found_patient=patient)
+    flash('Patient not found.', 'danger')
     return render_template('find_patient.html', patients=patients)
 
 @app.route('/patient/<tc_kimlik_no>')
@@ -110,6 +122,30 @@ def patient_detail(tc_kimlik_no):
     else:
         flash('Patient not found.', 'error')
         return redirect(url_for('find_patient'))
+
+@app.route('/assign_room', methods=['GET','POST'])
+def assign_room():
+    
+    if request.method == 'POST':
+        tc_kimlik_no = request.form['tc_kimlik_no']
+        
+
+        patient = next((p for p in patients if p['tc_kimlik_no'] == tc_kimlik_no), None)
+        
+        room_number = request.form['room_number']
+        if patient:
+            patient['inpatient_room'] = room_number
+            flash(f'Room {room_number} assigned to patient {patient["name"]}.', 'success')
+            rooms[int(room_number)]=False
+            return redirect(url_for('main_menu'))
+        else:
+            flash('Patient not found.', 'danger')
+
+    available_rooms = [room for room, is_available in rooms.items() if is_available]
+    return render_template('assign_room.html',rooms=available_rooms)
+    
+    
+
 
 if __name__ == '__main__':
     app.run(debug=True)
